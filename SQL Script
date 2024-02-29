@@ -1,0 +1,25 @@
+--Menghitung berapa orang yang lahir ditempat yang sama (yang lebih dari 5 orang)
+SELECT COUNT(id), born
+FROM persons 
+GROUP BY born
+HAVING COUNT(id) > 5;
+
+-- Memilih data persons yang tinggal di Jambi
+select p.firstname, p.city from persons p 
+WHERE city = 'Jambi'
+
+-- Memilih data persons dengan beberapa syarat (OR)
+select p.firstname,p.lastname, p.city, p.born from persons p 
+WHERE city = 'Jambi' OR lastname  LIKE 'Z%' OR born = 'Semarang';
+
+-- Memilih data persons dengan beberapa syarat (AND)
+select p.firstname,p.lastname, p.city from persons p 
+WHERE city = 'Malang' AND lastname LIKE 'M%';
+
+
+SELECT p.id, p.firstname, p.lastname, p.nik, p.email, p.born, p.date_of_birth, 
+date_part('year', age(p.date_of_birth)) as year_age FROM  persons p
+
+--Menampilkan seluruh data person KECUALI yang lahir di Sukabumi 
+SELECT * FROM person
+WHERE NOT born = 'Sukabumi';
